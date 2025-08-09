@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: marche-energie
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5432/marche-energie
+    username: admin
+    password: passwd
+    driverClassName: org.postgresql.Driver
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        stringtype: unspecified
+  sql:
+    init:
+      platform: postgres
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    enabled: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /

@@ -1,0 +1,16 @@
+services:
+  db:
+    hostname: db-marche-energie
+    image: ${POSTGRESQL_IMAGE_NAME}:${POSTGRESQL_IMAGE_VERSION}
+    shm_size: "256m"
+    ports:
+      - "$DB_MARCHE_ENERGIE_PORT:5432"
+    volumes:
+      - db-marche-energie:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRESQL_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
+      POSTGRES_DB: ${POSTGRESQL_DB_NAME}
+
+volumes:
+  db-marche-energie:

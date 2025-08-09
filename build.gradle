@@ -1,0 +1,79 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+    id 'com.diffplug.spotless' version '7.2.1'
+}
+
+group = 'fr.test'
+version = '0.0.1-SNAPSHOT'
+
+ext {
+    liquibaseVersion = '4.33.0'
+    lombokVersion = '1.18.38'
+    postgresqlVersion = '42.7.7'
+    testContainerVersion = '1.21.3'
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter-web:${globalSpringBootVersion}"
+
+    // DB
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${globalSpringBootVersion}"
+    implementation "org.postgresql:postgresql:${postgresqlVersion}"
+
+    // Liquibase
+    implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+
+    // Annotations
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // Tests
+    testImplementation "org.springframework.boot:spring-boot-starter-test:${globalSpringBootVersion}"
+    testImplementation "org.springframework.boot:spring-boot-testcontainers:${globalSpringBootVersion}"
+    testImplementation "org.testcontainers:junit-jupiter:${testContainerVersion}"
+    testImplementation "org.testcontainers:postgresql:${testContainerVersion}"
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+spotless {
+    enforceCheck = false
+    encoding 'UTF-8'
+    format 'configurations', {
+        target '*.gradle', '*.md', '.gitignore', '**/*.yml', '**/*.yaml', '**/*.xml', 'src/functional/**/*.feature'
+
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+    java {
+        googleJavaFormat()
+
+        toggleOffOn 'formatter:off', 'formatter:on'
+        trimTrailingWhitespace()
+        removeUnusedImports()
+
+        custom 'Lambda fix', { it.replace('} )', '})').replace('} ,', '},') }
+    }
+}
