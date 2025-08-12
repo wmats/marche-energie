@@ -2,16 +2,10 @@ spring:
   application:
     name: marche-energie
   datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/marche-energie
-    username: admin
-    password: passwd
-    driverClassName: org.postgresql.Driver
-    hikari:
-      poolName: Hikari
-      auto-commit: false
-      data-source-properties:
-        stringtype: unspecified
+    url: jdbc:tc:postgresql:17-alpine:///marche-energie
+    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
+    username: postgres
+    password:
   sql:
     init:
       platform: postgres

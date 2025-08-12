@@ -12,6 +12,7 @@ ext {
     liquibaseVersion = '4.33.0'
     lombokVersion = '1.18.38'
     postgresqlVersion = '42.7.7'
+    springDocVersion = '2.8.9'
     testContainerVersion = '1.21.3'
 }
 
@@ -33,6 +34,7 @@ repositories {
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-web:${globalSpringBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-validation:${globalSpringBootVersion}"
 
     // DB
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${globalSpringBootVersion}"
@@ -40,6 +42,9 @@ dependencies {
 
     // Liquibase
     implementation "org.liquibase:liquibase-core:${liquibaseVersion}"
+
+    // Tools
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
 
     // Annotations
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
