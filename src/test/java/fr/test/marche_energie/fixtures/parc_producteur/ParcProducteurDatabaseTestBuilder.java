@@ -9,8 +9,7 @@ import java.util.UUID;
 
 public class ParcProducteurDatabaseTestBuilder {
   private UUID id = UUID.fromString("e1affe8f-07f8-41b0-819f-cb86fcb535be");
-  private String nom = "Parc producteur #1";
-  private TypeParcProducteur type = TypeParcProducteur.SOLAIRE;
+  private final TypeParcProducteur type = TypeParcProducteur.SOLAIRE;
   private Map<TrancheHoraire, Integer> production =
       Map.of(
           TrancheHoraire.TRANCHE_1, 0,
@@ -31,7 +30,7 @@ public class ParcProducteurDatabaseTestBuilder {
   public ParcProducteurDatabase build() {
     return ParcProducteurDatabase.builder()
         .id(id)
-        .nom(nom)
+        .nom("Parc producteur #1")
         .type(type)
         .productionParTrancheHoraire(production)
         .dateHeureCreation(dateHeureCreation)

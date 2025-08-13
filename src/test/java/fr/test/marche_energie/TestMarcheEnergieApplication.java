@@ -5,8 +5,6 @@ import org.springframework.boot.SpringApplication;
 public class TestMarcheEnergieApplication {
 
   public static void main(String[] args) {
-    SpringApplication.from(MarcheEnergieApplication::main)
-        .with(TestcontainersConfiguration.class)
-        .run(args);
+    SpringApplication.from(MarcheEnergieApplication::main).run(args);
   }
 }

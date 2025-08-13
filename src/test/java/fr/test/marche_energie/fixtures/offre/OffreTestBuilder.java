@@ -16,8 +16,8 @@ import java.util.UUID;
 
 public class OffreTestBuilder {
   private UUID id = UUID.fromString("839e011f-fe0e-4241-b4d1-63a17e021833");
-  private TypeMarche marche = TypeMarche.RESERVE_PRIMAIRE;
-  private OffreBlocHoraire offreBlocHoraire = uneOffreBlocHoraire();
+  private final TypeMarche marche = TypeMarche.RESERVE_PRIMAIRE;
+  private final OffreBlocHoraire offreBlocHoraire = uneOffreBlocHoraire();
   private Map<TrancheHoraire, OffreBlocHoraire> offreBlocsHoraires =
       Map.of(TrancheHoraire.TRANCHE_1, offreBlocHoraire);
   private LocalDateTime dateHeureCreation = LocalDateTime.of(2025, 8, 11, 17, 24);
@@ -35,11 +35,6 @@ public class OffreTestBuilder {
         .dateHeureCreation(dateHeureCreation)
         .dateHeureModification(dateHeureModification)
         .build();
-  }
-
-  public OffreTestBuilder avecId(UUID id) {
-    this.id = id;
-    return this;
   }
 
   public OffreTestBuilder avecBlocsHoraires(

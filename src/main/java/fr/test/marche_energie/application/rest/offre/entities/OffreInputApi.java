@@ -28,7 +28,8 @@ public class OffreInputApi {
 
   @Schema(
       requiredMode = Schema.RequiredMode.REQUIRED,
-      description = "Les blocs horaires de l'offre ventilés par tranche horaire")
+      description =
+          "Les blocs horaires de l'offre ventilés par tranche horaire. La clé = code tranche horaire (TRANCHE_1, TRANCHE_2,...).")
   @NotEmpty(message = "La liste des blocs horaires de l'offre ne peut pas être vide")
   @JsonDeserialize(keyUsing = DeserialiseurTrancheHoraire.class)
   @Valid

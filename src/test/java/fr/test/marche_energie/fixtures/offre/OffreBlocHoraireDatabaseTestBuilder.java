@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class OffreBlocHoraireDatabaseTestBuilder {
-  private UUID id = UUID.fromString("a976ffd0-db12-4e11-a64c-8b06e7464de1");
-  private BigDecimal prixPlancher = BigDecimal.valueOf(1000);
+  private final BigDecimal prixPlancher = BigDecimal.valueOf(1000);
 
   public static OffreBlocHoraireDatabaseTestBuilder unOffreBlocHoraireDatabase() {
     return new OffreBlocHoraireDatabaseTestBuilder();

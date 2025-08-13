@@ -11,10 +11,10 @@ import java.util.Map;
 import java.util.UUID;
 
 public class OffreInputApiTestBuilder {
-  private UUID parcProducteurId = UUID.fromString("e1affe8f-07f8-41b0-819f-cb86fcb535be");
-  private TypeMarche marche = TypeMarche.RESERVE_PRIMAIRE;
-  private OffreBlocHoraireInputApi offreBlocHoraire = uneOffreBlocHoraireInputApi();
-  private Map<TrancheHoraire, OffreBlocHoraireInputApi> offreBlocsHoraires =
+  private final UUID parcProducteurId = UUID.fromString("e1affe8f-07f8-41b0-819f-cb86fcb535be");
+  private final TypeMarche marche = TypeMarche.RESERVE_PRIMAIRE;
+  private final OffreBlocHoraireInputApi offreBlocHoraire = uneOffreBlocHoraireInputApi();
+  private final Map<TrancheHoraire, OffreBlocHoraireInputApi> offreBlocsHoraires =
       Map.of(TrancheHoraire.TRANCHE_1, offreBlocHoraire);
 
   public static OffreInputApiTestBuilder uneOffreInputApi() {
